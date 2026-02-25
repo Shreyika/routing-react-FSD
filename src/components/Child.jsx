@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-function Child({data}) {
+function Child({obj}) {
 
     useEffect(()=>{
         console.log("child component",data);
@@ -8,7 +8,7 @@ function Child({data}) {
     })
 
   return (
-    <div>Child component</div>
+    <div>Child component {obj}</div>
   )
 }
 

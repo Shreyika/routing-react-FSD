@@ -11,11 +11,19 @@ import Contact from './components/Contact'
 import NotFound from './components/NotFound'
 import Reducer from './components/Reducer'
 import Memoization from './components/Memoization'
+import {ErrorBoundary} from "react-error-boundary";
+
+function ErrorMessage(){
+  return <>
+    <h1 className="bg-danger text-white">something went wrong</h1>
+  </>
+}
 
 const router=createBrowserRouter([
   {
     path:'',
     element:<Layout/>,
+    errorElement:<ErrorMessage/>,
     children:[
       {
         index:true,
@@ -39,7 +47,8 @@ const router=createBrowserRouter([
       },
       {
         path:'memoization',
-        element:<Memoization/>
+        element:<Memoization/>,
+        
       },
       {
         //* means if any route excluding the above declared ones
@@ -55,7 +64,10 @@ function App() {
 
   return (
     <>
+    <ErrorBoundary FallbackComponent={ErrorMessage}>
       <RouterProvider router={router}></RouterProvider>
+    </ErrorBoundary>
+      
     </>
   )
 }
